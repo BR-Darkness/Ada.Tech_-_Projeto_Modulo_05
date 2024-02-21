@@ -5,7 +5,7 @@ export function ErrorPage() {
     return (
         <>
             <ReturnButton route="/" />
-            <main className=" tracking-wider text-center text-balance sm:w-[640px] m-5 mx-auto">
+            <main className="min-h-screen flex flex-col justify-center tracking-wider text-center text-balance sm:w-[640px] mx-auto">
                 <div className="flex flex-col justify-center items-center gap-6 m-4 py-10 p-4">
                     <h1 className="max-[450px]:order-2 text-4xl min-[450px]:text-6xl font-bebas leading-tight">404: Página não encontrada</h1>
                     <img className="max-[450px]:order-1" src={notFoundImage} alt="Error 404" width={240} />

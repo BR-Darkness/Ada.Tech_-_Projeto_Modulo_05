@@ -11,9 +11,9 @@
 {
     pointer-events: none;
     position: absolute;
-    height: calc(100% + 200px);
+    height: 100%;
     width: 100%;
-    top: -200px;
+    top: 0;
     left: 0;
 
     background-image:url("../assets/noise.png");
@@ -42,7 +42,17 @@
 {
     ._default-button
     {
-        @apply bg-neutral-700 hover:bg-neutral-600 p-2 rounded shadow-md border-[1px] border-neutral-500 outline-none focus-visible:ring-[1px] focus-visible:ring-neutral-400
+        @apply text-neutral-50 bg-neutral-700 hover:bg-neutral-600 p-2 rounded shadow-md border-[1px] border-neutral-500 outline-none focus-visible:ring-[1px] focus-visible:ring-neutral-400
+    }
+
+    ._details-button
+    {
+        @apply text-emerald-50 text-sm bg-emerald-700 hover:bg-emerald-600 p-2 rounded shadow-md border-[1px] border-emerald-500 outline-none focus-visible:ring-[1px] focus-visible:ring-emerald-400
+    }
+
+    ._delete-button
+    {
+        @apply text-red-50 text-sm bg-red-700 hover:bg-red-600 p-2 rounded shadow-md border-[1px] border-red-500 outline-none focus-visible:ring-[1px] focus-visible:ring-red-400
     }
 }
 
