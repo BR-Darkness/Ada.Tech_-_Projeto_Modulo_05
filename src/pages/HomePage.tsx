@@ -1,18 +1,51 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Footer } from '../components/Footer';
 import { Card } from '../components/Card';
-import { CharactersData } from '../data/CharactersData';
 import { NewCharacterCard } from '../components/NewCharacterCard';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../services/firebaseConnection';
+import { Personagem } from '../models/hero';
+
+
 
 export function HomePage() {
-  const [cards, setCards] = useState(CharactersData);
+  const [cards, setCards] = useState<Personagem[]>([])
   const [filter, setFilter] = useState('');
+
+
+  useEffect(() => {
+     loadHeroes();
+  }, []);
+
+  async function loadHeroes() {
+    const heroesRef = collection(db, "heroes");
+    const unsubscribe = onSnapshot(heroesRef, (snapshot) => {
+      const heroesData: Personagem[] = [];
+      snapshot.forEach((doc) => {
+        const heroData = {
+          id: doc.id,
+          altura: doc.data().altura,
+          descricao: doc.data().descricao,
+          idade: doc.data().idade,
+          imagemUrl: doc.data().imagemUrl,
+          nome: doc.data().nome,
+          origem: doc.data().origem,
+          raca: doc.data().raca,
+          tipo: doc.data().tipo,
+        };
+        heroesData.push(heroData);
+      });
+      setCards(heroesData);
+    });
+    return unsubscribe;
+  }
+
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
     const filteredCharacters = (query != '')
-    ? CharactersData.filter(CharactersData => CharactersData.nome.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
-    : CharactersData;
+      ? cards.filter(CharactersData => CharactersData.nome.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+      : cards;
 
     setCards(filteredCharacters);
   }
@@ -22,14 +55,15 @@ export function HomePage() {
     setFilter(filter);
   }
 
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow mx-auto max-w-[1480px] my-12 space-y-6 px-5">
         <h1 className="text-3xl sm:text-4xl font-bebas tracking-wide">Projeto Final - Módulo 05:</h1>
         <form className="flex flex-wrap gap-3 justify-evenly sm:justify-between">
-          <input 
-            type="text" 
-            placeholder='Pesquise pelo personagem...' 
+          <input
+            type="text"
+            placeholder='Pesquise pelo personagem...'
             className="w-1/2 min-w-[240px] bg-transparent text-xl sm:text-3xl font-semibold placeholder:tracking-wider outline-none placeholder:font-bebas placeholder:text-neutral-500 text-neutral-300 hover:cursor-pointer hover:bg-neutral-800 focus-visible:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-neutral-600 rounded-md p-3"
             onChange={handleSearch}
           />

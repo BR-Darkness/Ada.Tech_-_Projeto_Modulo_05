@@ -1,17 +1,10 @@
 import { ArrowUpRightFromSquare, Trash2 } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import { Personagem } from "../models/hero";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../services/firebaseConnection";
 
-type Personagem = 
-{
-    nome: string,
-    tipo: string,
-    raca: string,
-    origem: string,
-    descricao: string,
-    idade: string | number,
-    altura: string | number,
-    imagem: string,
-}
+
 
 type Props = 
 {
@@ -21,6 +14,16 @@ type Props =
 export function Card({personagem}: Props) {
     const navigate = useNavigate();
     let characterUrl = `/details/${personagem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /gm, "-").toLowerCase()}`;
+
+    async function deleteHero(id : string){
+        const docRef = doc(db, 'heroes', id)
+        try {
+            await deleteDoc(docRef);
+            console.log('Documento excluído com sucesso.');
+          } catch (error) {
+            console.error('Erro ao excluir o documento:', error);
+          }
+    }
 
     return (
         <div className={`p-5 rounded-md hover:ring-[1px] focus-visible:ring-2 outline-none
@@ -36,12 +39,13 @@ export function Card({personagem}: Props) {
                 <img 
                     className={`object-contain w-full h-48 rounded-sm 
                     ${personagem.tipo == 'heroi' ? 'bg-emerald-950' : 'bg-red-950'} `} 
-                    src={personagem.imagem} alt={`Imagem de ${personagem.nome}`} 
+                    src={personagem.imagemUrl} alt={`Imagem de ${personagem.nome}`} 
                 />
                 <h3 className="text-xl font-bebas tracking-wide">Descrição:</h3>
                 <p className={`text-justify flex-grow text-sm text-neutral-300`}>{personagem.descricao}</p>
                 <div className="flex gap-2">
                     <button 
+                        onClick={() => deleteHero(personagem.id)} 
                         className="_delete-button w-1/2 flex items-center gap-2 justify-center">
                         <Trash2 size={16} /> Apagar
                     </button>
