@@ -1,5 +1,6 @@
 export interface Personagem  
 {
+    id: string
     nome: string,
     tipo: string,
     raca: string,

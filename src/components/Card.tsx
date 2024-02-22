@@ -1,6 +1,8 @@
 import { ArrowUpRightFromSquare, Trash2 } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { Personagem } from "../models/hero";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../services/firebaseConnection";
 
 
 
@@ -12,6 +14,16 @@ type Props =
 export function Card({personagem}: Props) {
     const navigate = useNavigate();
     let characterUrl = `/details/${personagem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /gm, "-").toLowerCase()}`;
+
+    async function deleteHero(id : string){
+        const docRef = doc(db, 'heroes', id)
+        try {
+            await deleteDoc(docRef);
+            console.log('Documento excluído com sucesso.');
+          } catch (error) {
+            console.error('Erro ao excluir o documento:', error);
+          }
+    }
 
     return (
         <div className={`p-5 rounded-md hover:ring-[1px] focus-visible:ring-2 outline-none
@@ -33,6 +45,7 @@ export function Card({personagem}: Props) {
                 <p className={`text-justify flex-grow text-sm text-neutral-300`}>{personagem.descricao}</p>
                 <div className="flex gap-2">
                     <button 
+                        onClick={() => deleteHero(personagem.id)} 
                         className="_delete-button w-1/2 flex items-center gap-2 justify-center">
                         <Trash2 size={16} /> Apagar
                     </button>
