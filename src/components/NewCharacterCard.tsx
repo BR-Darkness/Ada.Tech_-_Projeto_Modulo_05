@@ -1,8 +1,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { PlusCircle, X } from "lucide-react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Personagem } from "../models/hero";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, } from "firebase/firestore";
 import { db } from "../services/firebaseConnection";
 
 

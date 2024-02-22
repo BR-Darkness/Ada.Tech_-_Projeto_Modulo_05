@@ -93,7 +93,7 @@ export function CharacterPage() {
                     />
                 </div>
             </section>
-            <ReturnButton route="/" />
+            <ReturnButton route="/home" />
         </main>
     )    
 }
