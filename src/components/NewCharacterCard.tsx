@@ -1,7 +1,73 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, X } from "lucide-react";
+import { string } from "prop-types";
+import { ChangeEvent, useState } from "react";
+
+type Personagem = 
+{
+    nome: string,
+    tipo: string,
+    raca: string,
+    origem: string,
+    descricao: string,
+    idade: string | number,
+    altura: string | number,
+    imagem: string,
+}
+
+type Props = 
+{
+    personagem: Personagem
+}
 
 export function NewCharacterCard() {
+    
+    // const [nome, setNome] = useState('');
+    // const [tipo, setTipo] = useState('');
+    // const [raca, setRaca] = useState('');
+    // const [origem, setOrigem] = useState('');
+    // const [descricao, setDescricao] = useState('');
+    // const [idade, setIdade] = useState('');
+    // const [nome, setNome] = useState('');
+    // const [nome, setNome] = useState('');
+
+    const [formData, setFormData] = useState({
+        nome: "",
+        tipo: "",
+        raca: "",
+        origem: "",
+        descricao: "",
+        idade: "",
+        altura: "",
+        imagem: ""
+      });
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        // if (String(e.target.value) == '') return
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    function testResult()
+    {
+        console.log(formData);
+    }
+
+    // const test = () => {
+    //     console.log(formData.nome);
+    //     localStorage.setItem('characters', JSON.stringify([...CharactersData, formData]));
+    // }
+
     return (
         <Dialog.Root>
             <Dialog.Trigger 
@@ -14,12 +80,30 @@ export function NewCharacterCard() {
             
             <Dialog.Portal>
                 <Dialog.Overlay className="inset-0 fixed bg-black/50 flex justify-center items-center">
-                    <Dialog.Content className="flex flex-col justify-center items-center w-[640px] h-[640px] bg-neutral-800 rounded-md">
-                        <input type="text" placeholder="Nome do Heroi" className="_default-input"/>
-                        <input type="text" placeholder="Nome do Heroi" className="_default-input"/>
-                        <input type="text" placeholder="Nome do Heroi" className="_default-input"/>
-                        <input type="text" placeholder="Nome do Heroi" className="_default-input"/>
-
+                    <Dialog.Content className="flex flex-col justify-center items-center p-5 w-[640px] bg-neutral-800 rounded-md relative overflow-hidden">
+                        <Dialog.Close className="absolute right-0 top-0 bg-neutral-900 ring-[1px] ring-neutral-800 p-1.5 text-slate-400 hover:text-slate-100">
+                            <X size={20} />
+                        </Dialog.Close>
+                        <form className="flex flex-col gap-3 w-full m-auto">
+                            <h2 className="font-bebas text-2xl tracking-wide">Adicionar Personagem:</h2>
+                            <input onChange={handleInputChange} name="nome" type="text" placeholder="Nome do Heroi" className="_default-input"/>
+                            <select onChange={handleSelectChange} name="tipo" className="_default-input text-neutral-400" defaultValue="" required>
+                                <option className="bg-neutral-700" value="">Tipo de Personagem</option>
+                                <option className="bg-neutral-700" value="heroi">Herói</option>
+                                <option className="bg-neutral-700" value="vilao">Vilão</option>
+                            </select>
+                            <input onChange={handleInputChange} name="raca" type="text" placeholder="Raça (Ex: Humano)" title="Raça do Personagem" className="_default-input" />
+                            <input onChange={handleInputChange} name="idade" type="number" placeholder="Idade" className="_default-input" />
+                            <input onChange={handleInputChange} name="altura" type="number" placeholder="Altura" className="_default-input"/>              
+                            <input onChange={handleInputChange} name="origem" type="text" placeholder="Origem (Hq de origem)" title="Origem do Personagem" className="_default-input" />
+                            <textarea onChange={handleTextareaChange} name="descricao" placeholder="Detalhes do personagem" cols={30} rows={5} className="_default-input resize-none" ></textarea>
+                            <input onChange={handleInputChange} name="imagem" type="url"
+                                placeholder="URL da imagem do personagem"
+                                // onChange={handleImageUrl} 
+                                className="_default-input block"
+                            />
+                            <button type="button" onClick={testResult} className="_details-button mt-3">Enviar</button>
+                        </form>
                     </Dialog.Content>                    
                 </Dialog.Overlay>
             </Dialog.Portal>
