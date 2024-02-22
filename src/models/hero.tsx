@@ -8,5 +8,5 @@ export interface Personagem
     descricao: string,
     idade: string | number,
     altura: string | number,
-    imagemUrl: string,
+    imagem: string,
 }

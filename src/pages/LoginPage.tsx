@@ -23,7 +23,7 @@ export function LoginPage() {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             setError((error as Error).message);
         }
@@ -32,7 +32,7 @@ export function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-grey-100">
             <div className="max-w-md w-full p-8 bg-black rounded-md shadow-md">
-                <h2 className="text-3xl font-bold mb-4">Login in application</h2>
+                <h2 className="text-3xl font-bold mb-4">Login</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
                         <label htmlFor="email" className="block mb-1">Email:</label>

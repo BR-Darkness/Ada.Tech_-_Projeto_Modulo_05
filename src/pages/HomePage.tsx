@@ -27,7 +27,7 @@ export function HomePage() {
           altura: doc.data().altura,
           descricao: doc.data().descricao,
           idade: doc.data().idade,
-          imagemUrl: doc.data().imagemUrl,
+          imagem: doc.data().imagem,
           nome: doc.data().nome,
           origem: doc.data().origem,
           raca: doc.data().raca,
@@ -40,6 +40,7 @@ export function HomePage() {
     return unsubscribe;
   }
 
+  console.log(cards)
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
@@ -81,7 +82,7 @@ export function HomePage() {
         <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-6">
           <NewCharacterCard />
           {cards.filter(CharactersData => CharactersData.tipo.toLocaleLowerCase().includes(filter.toLocaleLowerCase())).map(personagem => {
-            return <Card key={personagem.nome} personagem={personagem} />
+            return <Card key={personagem.id} personagem={personagem} />
           })}
         </div>
       </main>

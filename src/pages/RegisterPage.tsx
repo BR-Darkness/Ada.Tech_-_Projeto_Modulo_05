@@ -28,7 +28,7 @@ export function RegisterPage() {
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             setError((error as Error).message);
         }
@@ -76,7 +76,7 @@ export function RegisterPage() {
                     <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button>
                 </form>
                 <div className="mt-4">
-                    <Link to="/login" className="text-blue-500 hover:underline">Já possui conta? Login</Link>
+                    <Link to="/" className="text-blue-500 hover:underline">Já possui conta? Login</Link>
                 </div>
             </div>
         </div>
