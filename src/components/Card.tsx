@@ -1,17 +1,8 @@
 import { ArrowUpRightFromSquare, Trash2 } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import { Personagem } from "../models/hero";
 
-type Personagem = 
-{
-    nome: string,
-    tipo: string,
-    raca: string,
-    origem: string,
-    descricao: string,
-    idade: string | number,
-    altura: string | number,
-    imagem: string,
-}
+
 
 type Props = 
 {
@@ -36,7 +27,7 @@ export function Card({personagem}: Props) {
                 <img 
                     className={`object-contain w-full h-48 rounded-sm 
                     ${personagem.tipo == 'heroi' ? 'bg-emerald-950' : 'bg-red-950'} `} 
-                    src={personagem.imagem} alt={`Imagem de ${personagem.nome}`} 
+                    src={personagem.imagemUrl} alt={`Imagem de ${personagem.nome}`} 
                 />
                 <h3 className="text-xl font-bebas tracking-wide">Descrição:</h3>
                 <p className={`text-justify flex-grow text-sm text-neutral-300`}>{personagem.descricao}</p>
