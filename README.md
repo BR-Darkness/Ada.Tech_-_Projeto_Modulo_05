@@ -3,9 +3,9 @@
 
 <p align="center">
   <br>
-  <a href="https://br-darkness.github.io/Ada.Tech_-_Projeto_Modulo_05/">LocalStorage Version</a>
+  <a href="https://br-darkness.github.io/Ada.Tech_-_Projeto_Modulo_05/" target="_blank">LocalStorage Version</a>
   <br><br>
-  <a href="https://projeto-heroes-ada.netlify.app/">Firebase Version</a>
+  <a href="https://projeto-heroes-ada.netlify.app/" target="_blank">Firebase Version</a>
 </p>
 
 <br>
