@@ -13,7 +13,7 @@ type Props =
 
 export function Card({personagem}: Props) {
     const navigate = useNavigate();
-    let characterUrl = `/details/${personagem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /gm, "-").toLowerCase()}`;
+    let characterUrl = `/details/${personagem.id}`;
 
     async function deleteHero(id : string){
         const docRef = doc(db, 'heroes', id)
@@ -39,7 +39,7 @@ export function Card({personagem}: Props) {
                 <img 
                     className={`object-contain w-full h-48 rounded-sm 
                     ${personagem.tipo == 'heroi' ? 'bg-emerald-950' : 'bg-red-950'} `} 
-                    src={personagem.imagemUrl} alt={`Imagem de ${personagem.nome}`} 
+                    src={personagem.imagem} alt={`Imagem de ${personagem.nome}`} 
                 />
                 <h3 className="text-xl font-bebas tracking-wide">Descrição:</h3>
                 <p className={`text-justify flex-grow text-sm text-neutral-300`}>{personagem.descricao}</p>

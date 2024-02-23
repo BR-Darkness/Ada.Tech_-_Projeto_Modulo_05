@@ -8,17 +8,17 @@ import { RegisterPage } from "../pages/RegisterPage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/details/:characterName", 
+    path: "/details/:characterId", 
     element: <CharacterPage />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/login", 
-    element: <LoginPage />,
+    path: "/home", 
+    element: <HomePage />,
     errorElement: <ErrorPage />
   },
   {

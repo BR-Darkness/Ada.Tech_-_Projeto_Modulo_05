@@ -1,18 +1,61 @@
+import { doc, getDoc } from "firebase/firestore";
 import { ReturnButton } from "../components/ReturnButton";
-import { CharactersData } from "../data/CharactersData";
 import { useParams } from "react-router-dom";
+import { db } from "../services/firebaseConnection";
+import { useEffect, useState } from "react";
+import { Personagem } from "../models/hero";
 
 export function CharacterPage() {
-    const characterName = useParams();
-    let character : string | undefined = '';
-    character = characterName.characterName;
+    const { characterId } = useParams();
+    const [personagem, setPersonagem] = useState<Personagem | null>(null);
 
-    const [personagem] = 
-    CharactersData.filter(CharactersData => CharactersData.nome.normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, "").replace(/ /gm, "-")
-    .toLowerCase() == ((character) ? character : ''));
+    useEffect(() => {
+        async function fetchCharacter() {
+            console.log(characterId)
+            try {
+                if (!characterId) {
+                    console.error("ID do personagem não especificado.");
+                    return;
+                }
+
+                const heroData = await getHeroById(characterId);
+                if (heroData) {
+                    setPersonagem(heroData);
+                } else {
+                    console.log("Personagem não encontrado");
+                }
+            } catch (error) {
+                console.error("Erro ao buscar personagem:", error);
+            }
+        }
+        fetchCharacter();
+    }, [characterId]);
+
+    async function getHeroById(heroId: string) {
+        try {
+            const heroDocRef = doc(db, "heroes", heroId);
+            if (!heroDocRef) {
+                console.error("Referência do documento não foi criada corretamente.");
+                return null;
+            }
+            
+            const heroDocSnapshot = await getDoc(heroDocRef);
+            if (heroDocSnapshot.exists()) {
+                return heroDocSnapshot.data() as Personagem;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.error("Erro ao buscar herói por ID:", error);
+            throw error;
+        }
+    }
 
     window.scrollTo(0, 0);
+
+    if (!personagem) {
+        return <div>Carregando...</div>;
+    }
 
     return (
         <main className="min-h-screen flex flex-col justify-center gap-12 min-[455px]:px-5 mx-auto max-w-[1480px]">
@@ -50,7 +93,7 @@ export function CharacterPage() {
                     />
                 </div>
             </section>
-            <ReturnButton route="/" />
+            <ReturnButton route="/home" />
         </main>
     )    
 }
