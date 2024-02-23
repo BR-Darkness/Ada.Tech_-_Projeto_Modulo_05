@@ -33,20 +33,41 @@ export function NewCharacterCard() {
         }
     }
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const input = document.getElementById(name);
+
+        if (value != '') {
+            input?.classList.add('ring-emerald-600')
+            input?.classList.remove('ring-red-600')
+            setFormData({ ...formData, [name]: value });
+            return
+        }
+
+        input?.classList.add('ring-red-600')
+        input?.classList.remove('ring-emerald-600')
     }
 
-    const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleImageUrl = (e : ChangeEvent<HTMLInputElement>) => {
+        const testImage = new Image();
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    }
+        testImage.src = e.target.value;
 
-    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        // if (String(e.target.value) == '') return
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        //Caso a url da imagem seja válida
+        testImage.onload = function() {
+            const input = document.getElementById("imagem");
+            input?.classList.add('ring-emerald-600')
+            input?.classList.remove('ring-red-600')
+            setFormData({ ...formData, [name]: value });
+        };
+
+        //Caso a url da imagem seja inválida
+        testImage.onerror = function() {
+            const input = document.getElementById("imagem");
+            input?.classList.add('ring-red-600')
+            input?.classList.remove('ring-emerald-600')
+            setFormData({ ...formData, [name]: '' });
+        };
     }
 
     return (
@@ -67,34 +88,31 @@ export function NewCharacterCard() {
                         </Dialog.Close>
                         <form className="flex flex-col gap-3 w-full m-auto">
                             <h2 className="font-bebas text-2xl tracking-wide">Adicionar Personagem:</h2>
-                            <input onChange={handleInputChange} name="nome" type="text" placeholder="Nome do Heroi" className="_default-input" />
-                            <select onChange={handleSelectChange} name="tipo" className="_default-input text-neutral-400" defaultValue="" required>
+                            <input onChange={handleInputChange} name="nome" id="nome" type="text" placeholder="Nome do Heroi" className="_default-input" />
+                            <select onChange={handleInputChange} name="tipo" id="tipo" className="_default-input text-neutral-400" defaultValue="" required>
                                 <option className="bg-neutral-700" value="">Tipo de Personagem</option>
                                 <option className="bg-neutral-700" value="heroi">Herói</option>
                                 <option className="bg-neutral-700" value="vilao">Vilão</option>
                             </select>
-                            <input onChange={handleInputChange} name="raca" type="text" placeholder="Raça (Ex: Humano)" title="Raça do Personagem" className="_default-input" />
-                            <input onChange={handleInputChange} name="idade" type="number" placeholder="Idade" className="_default-input" />
-                            <input onChange={handleInputChange} name="altura" type="number" placeholder="Altura" className="_default-input" />
-                            <input onChange={handleInputChange} name="origem" type="text" placeholder="Origem (Hq de origem)" title="Origem do Personagem" className="_default-input" />
-                            <textarea onChange={handleTextareaChange} name="descricao" placeholder="Detalhes do personagem" cols={30} rows={5} className="_default-input resize-none" ></textarea>
-                            <input onChange={handleInputChange} name="imagem" type="url"
+                            <input onChange={handleInputChange} name="raca" id="raca" type="text" placeholder="Raça (Ex: Humano)" title="Raça do Personagem" className="_default-input" />
+                            <input onChange={handleInputChange} name="idade" id="idade" type="number" placeholder="Idade" className="_default-input" />
+                            <input onChange={handleInputChange} name="altura" id="altura" type="number" placeholder="Altura" className="_default-input" />
+                            <input onChange={handleInputChange} name="origem" id="origem" type="text" placeholder="Origem (Hq de origem)" title="Origem do Personagem" className="_default-input" />
+                            <textarea onChange={handleInputChange} name="descricao" id="descricao" placeholder="Detalhes do personagem" cols={30} rows={5} className="_default-input resize-none" ></textarea>
+                            <input name="imagem" id="imagem" type="url"
                                 placeholder="URL da imagem do personagem"
-                                // onChange={handleImageUrl} 
+                                onChange={handleImageUrl} 
                                 className="_default-input block"
                             />
-                            <Dialog.Close className="w-full">
-                                <Dialog.Close className="w-full">
-                                    <button
-                                        type="button"
-                                        onClick={() => addHeroToFirestore(formData)}
-                                        className={`_details-button mt-3 ${!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem ? 'bg-red-500 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-400'}`}
-                                        disabled={!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem}
-                                    >
-                                        Enviar
-                                    </button>
-                                </Dialog.Close>
-                            </Dialog.Close>
+                            <div className="flex gap-3 mt-3">
+                            <Dialog.Close className="w-full"><button type="button"
+                                    onClick={() => addHeroToFirestore(formData)}
+                                    className={`_details-button w-full mt-3 ${!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem ? 'bg-red-500 hover:bg-red-500 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-400'}`}
+                                    disabled={!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem}
+                                >
+                                Enviar
+                            </button></Dialog.Close>
+                            </div>
                         </form>
                     </Dialog.Content>
                 </Dialog.Overlay>
