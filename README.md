@@ -1,16 +1,12 @@
-<center>
-  <p><img src="docs/imagens/404.gif" alt="Módulo 05 - Projeto Final" width="96px"><p>
-  
-  <h1>Módulo 05 - Projeto Final</h1>
+<p align="center"><img src="docs/imagens/404.gif" alt="Módulo 05 - Projeto Final" width="96px"><p>
+<h1 align="center">Módulo 05 - Projeto Final</h1>
 
-  <br>
+<br>
 
-  <p><img src="docs/imagens/desktop-01.png" alt="Imagem da tela inicial da versão de desktop - Projeto Final"><p>
+<p align="center"><img src="docs/imagens/desktop-01.png" alt="Imagem da tela inicial da versão de desktop - Projeto Final"><p>
+<p align="center"><small><b>Imagem da tela inicial da versão de desktop - Projeto Final</b></small></p>
 
-  <p><small><b>Imagem da tela inicial da versão de desktop - Projeto Final</b></small></p>
-
-  <br>
-</center>
+<br>
 
 ## 💡│Objetivo
 
