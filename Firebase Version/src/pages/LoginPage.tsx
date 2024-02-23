@@ -30,9 +30,9 @@ export function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-grey-100">
-            <div className="max-w-md w-full p-8 bg-black rounded-md shadow-md">
-                <h2 className="text-3xl font-bold mb-4">Login</h2>
+        <div className="min-h-screen flex items-center justify-center bg-neutral-900">
+            <div className="max-w-md w-full p-8 bg-neutral-800 rounded-md shadow-md">
+                <h2 className="font-bebas tracking-wider text-3xl mb-4">Login</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
                         <label htmlFor="email" className="block mb-1">Email:</label>
@@ -42,7 +42,7 @@ export function LoginPage() {
                             value={email}
                             onChange={handleEmailChange}
                             required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                            className="w-full p-2 border border-neutral-300 rounded-md focus:outline-none focus:border-emerald-600 text-black"
                         />
                     </div>
                     <div>
@@ -53,14 +53,14 @@ export function LoginPage() {
                             value={password}
                             onChange={handlePasswordChange}
                             required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                            className="w-full p-2 border border-neutral-300 rounded-md focus:outline-none focus:border-emerald-600 text-black"
                         />
                     </div>
-                    {error && <div className="text-red-500">{error}</div>}
-                    <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Login</button>
+                    {error && <div className="text-red-600">{error}</div>}
+                    <button type="submit" className="w-full bg-emerald-700 text-white p-2 rounded-md hover:bg-emerald-600 focus:outline-none focus:bg-emerald-600">Login</button>
                 </form>
-                <div className="mt-4">
-                    <Link to="/register" className="text-blue-500 hover:underline">Não tem uma conta? Registre-se aqui</Link>
+                <div className="mt-4 flex justify-end">
+                    <Link to="/register" className="text-emerald-500 block hover:underline">Não tem uma conta? Registre-se aqui</Link>
                 </div>
             </div>
         </div>

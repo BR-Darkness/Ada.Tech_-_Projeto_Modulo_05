@@ -35,9 +35,9 @@ export function RegisterPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-grey-100">
-            <div className="max-w-md w-full p-8 bg-black rounded-md shadow-md">
-                <h2 className="text-3xl font-bold mb-4">Crie uma conta</h2>
+        <div className="min-h-screen flex items-center justify-center bg-neutral-900">
+            <div className="max-w-md w-full p-8 bg-neutral-800 rounded-md shadow-md">
+                <h2 className="font-bebas tracking-wider text-3xl mb-4">Crie uma conta</h2>
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
                         <label htmlFor="email" className="block mb-1">Email:</label>
@@ -47,7 +47,7 @@ export function RegisterPage() {
                             value={email}
                             onChange={handleEmailChange}
                             required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                            className="w-full p-2 border border-neutral-300 rounded-md focus:outline-none focus:border-emerald-600 text-black"
                         />
                     </div>
                     <div>
@@ -58,7 +58,7 @@ export function RegisterPage() {
                             value={password}
                             onChange={handlePasswordChange}
                             required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                            className="w-full p-2 border border-neutral-300 rounded-md focus:outline-none focus:border-emerald-600 text-black"
                         />
                     </div>
                     <div>
@@ -69,14 +69,14 @@ export function RegisterPage() {
                             value={username}
                             onChange={handleUsernameChange}
                             required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                            className="w-full p-2 border border-neutral-300 rounded-md focus:outline-none focus:border-emerald-600 text-black"
                         />
                     </div>
                     {error && <div className="text-red-500">{error}</div>}
-                    <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button>
+                    <button type="submit" className="w-full bg-emerald-700 text-white p-2 rounded-md hover:bg-emerald-600 focus:outline-none focus:bg-emerald-600">Register</button>
                 </form>
-                <div className="mt-4">
-                    <Link to="/" className="text-blue-500 hover:underline">Já possui conta? Login</Link>
+                <div className="mt-4 flex justify-end">
+                    <Link to="/" className="text-emerald-600 hover:underline">Já possui conta? Login</Link>
                 </div>
             </div>
         </div>

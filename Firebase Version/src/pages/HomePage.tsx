@@ -59,7 +59,7 @@ export function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow mx-auto max-w-[1480px] my-12 space-y-6 px-5">
+      <main className="flex-grow w-full mx-auto max-w-[1480px] my-12 space-y-6 px-5">
         <h1 className="text-3xl sm:text-4xl font-bebas tracking-wide">Projeto Final - Módulo 05:</h1>
         <form className="flex flex-wrap gap-3 justify-evenly sm:justify-between">
           <input

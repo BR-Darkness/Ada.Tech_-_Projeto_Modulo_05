@@ -5,8 +5,6 @@ import { Personagem } from "../models/hero";
 import { addDoc, collection, } from "firebase/firestore";
 import { db } from "../services/firebaseConnection";
 
-
-
 export function NewCharacterCard() {
 
     const initialFormData: Personagem = {
@@ -21,8 +19,6 @@ export function NewCharacterCard() {
         imagem: ""
     };
 
-
-
     const [formData, setFormData] = useState<Personagem>(initialFormData);
 
     async function addHeroToFirestore(formData: Personagem) {
@@ -36,7 +32,6 @@ export function NewCharacterCard() {
             throw error;
         }
     }
-
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -57,7 +52,7 @@ export function NewCharacterCard() {
     return (
         <Dialog.Root>
             <Dialog.Trigger
-                className="bg-neutral-800 h-full min-h-24 flex flex-col justify-center items-center rounded-md outline-none
+                className="bg-neutral-800 h-full md:min-h-[480px] min-h-24 flex flex-col justify-center items-center rounded-md outline-none
                 hover:ring-[1px] hover:ring-neutral-700 focus-visible:ring-2 focus-visible:ring-neutral-600"
                 title="Adicionar Personagem"
             >

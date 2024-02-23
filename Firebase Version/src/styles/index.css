@@ -29,7 +29,7 @@
     height: 480px;
 }
 
-@media screen and (max-width: 455px) 
+@media screen and (max-width: 768px) 
 {
     .character-page-character-image
     {
@@ -57,7 +57,7 @@
 
     ._default-input
     {
-        @apply w-full min-h-12 bg-transparent px-4 py-2 leading-none m-0 inset-0 max-w-[600px] outline-none ring-2 ring-neutral-600 rounded-md hover:cursor-pointer hover:bg-neutral-700 focus-visible:bg-neutral-700
+        @apply text-gray-400 focus:bg-neutral-700 w-full min-h-12 bg-transparent px-4 py-2 leading-none m-0 inset-0 max-w-[600px] outline-none ring-2 ring-neutral-600 rounded-md hover:cursor-pointer hover:bg-neutral-700 focus-visible:bg-neutral-700
     }
 }
 
