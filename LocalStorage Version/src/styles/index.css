@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-shadow
+{
+    text-shadow: 1px 1px 1px #141414;
+}
+
+#Noise
+{
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    background-image:url("../assets/noise.png");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    opacity: 0.1;
+    z-index: 100;
+}
+
+.character-page-character-image
+{
+    width: 320px;
+    height: 480px;
+}
+
+@media screen and (max-width: 768px) 
+{
+    .character-page-character-image
+    {
+        width: 240px;
+        height: 320px;
+    }
+}
+
+@layer components 
+{
+    ._default-button
+    {
+        @apply text-neutral-50 bg-neutral-700 hover:bg-neutral-600 p-2 rounded shadow-md border-[1px] border-neutral-500 outline-none focus-visible:ring-[1px] focus-visible:ring-neutral-400
+    }
+
+    ._details-button
+    {
+        @apply text-emerald-50 text-sm bg-emerald-700 hover:bg-emerald-600 p-2 rounded shadow-md border-[1px] border-emerald-500 outline-none focus-visible:ring-[1px] focus-visible:ring-emerald-400
+    }
+
+    ._delete-button
+    {
+        @apply text-red-50 text-sm bg-red-700 hover:bg-red-600 p-2 rounded shadow-md border-[1px] border-red-500 outline-none focus-visible:ring-[1px] focus-visible:ring-red-400
+    }
+
+    ._default-input
+    {
+        @apply text-gray-400 focus:bg-neutral-700 w-full min-h-12 bg-transparent px-4 py-2 leading-none m-0 inset-0 max-w-[600px] outline-none ring-2 ring-neutral-600 rounded-md hover:cursor-pointer hover:bg-neutral-700 focus-visible:bg-neutral-700
+    }
+}
+
+/* ----- ----- Scroll ----- ----- */
+::-webkit-scrollbar 
+{
+    @apply h-4 w-4;
+}
+
+::-webkit-scrollbar-track 
+{
+    @apply bg-neutral-900;
+}
+   
+::-webkit-scrollbar-thumb 
+{
+    @apply box-border rounded-sm bg-neutral-600 border-[1px] border-solid border-neutral-500;
+}
+
+::-webkit-scrollbar-thumb:hover 
+{
+    @apply bg-neutral-500;
+}
