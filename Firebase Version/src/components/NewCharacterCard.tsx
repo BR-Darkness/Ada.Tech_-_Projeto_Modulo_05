@@ -107,7 +107,7 @@ export function NewCharacterCard() {
                             <div className="flex gap-3 mt-3">
                             <Dialog.Close className="w-full"><button type="button"
                                     onClick={() => addHeroToFirestore(formData)}
-                                    className={`_details-button w-full mt-3 ${!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem ? 'bg-red-500 hover:bg-red-500 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-400'}`}
+                                    className={`_details-button w-full mt-3 ${!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem ? 'bg-red-500 border-red-500 hover:bg-red-500 cursor-not-allowed' : 'bg-green-500 border-green-500 hover:bg-green-600 focus:ring focus:ring-green-400'}`}
                                     disabled={!formData.nome || !formData.tipo || !formData.raca || !formData.idade || !formData.altura || !formData.origem || !formData.descricao || !formData.imagem}
                                 >
                                 Enviar
