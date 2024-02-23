@@ -1,10 +1,22 @@
 <p align="center"><img src="docs/imagens/404.gif" alt="Módulo 05 - Projeto Final" width="96px"><p>
 <h1 align="center">Módulo 05 - Projeto Final</h1>
 
+<p align="center">
+  <br>
+  <a href="https://br-darkness.github.io/Ada.Tech_-_Projeto_Modulo_05/">LocalStorage Version</a>
+  <br><br>
+  <a href="https://projeto-heroes-ada.netlify.app/">Firebase Version</a>
+</p>
+
 <br>
 
 <p align="center"><img src="docs/imagens/desktop-01.png" alt="Imagem da tela inicial da versão de desktop - Projeto Final"><p>
 <p align="center"><small><b>Imagem da tela inicial da versão de desktop - Projeto Final</b></small></p>
+
+<br>
+
+<p align="center"><img src="docs/imagens/mobile-01.png" alt="Imagem da tela inicial da versão mobile - Projeto Final" height="640px"><p>
+<p align="center"><small><b>Imagem da tela inicial da versão mobile - Projeto Final</b></small></p>
 
 <br>
 
